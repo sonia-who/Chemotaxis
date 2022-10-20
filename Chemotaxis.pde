@@ -1,5 +1,5 @@
 // Walker bob;
-Walker[] slowpokes = new Walker[150];
+Bacteria[] slowpokes = new Bacteria[150];
 PImage insideout;
 
 float x;
@@ -7,34 +7,37 @@ float y;
 float easing = 0.009;
 
 boolean mouseClicked = false;
-boolean keyPress = false;
+boolean mouseMove = false;
 
 void setup() {
-  size(500, 500);
+  size(500, 281);
   // bob = new Walker();
   
   int i = 0;
-  while (i < 150) {
-    slowpokes[i] = new Walker((int)(Math.random() * 500), (int)(Math.random()*500));
+  while (i < 100) {
+    slowpokes[i] = new Bacteria((int)(Math.random() * 500), (int)(Math.random()*500));
     i++;
   }
   
-  insideout = loadImage("insideout");
+  // insideout = loadImage("https://i.pinimg.com/originals/42/6f/a0/426fa06b58f4e25876e493b6469b27e2.png");
+  insideout = loadImage("inside-out-rileys-headquarters.jpg");
 }
 
 void draw() {
   background(0);
   //bob.show();
   //bob.walk();
+  image(insideout, 0, 0);
+
   
-  // image(insideout, 250, 250);
   
-  for (int i = 0; i < 150; i++) {
+  
+  for (int i = 0; i < 100; i++) {
     slowpokes[i].show();
     slowpokes[i].walk();
     if (mouseClicked == true) {
       slowpokes[i].dance();
-    } else if (keyPress == true) {
+    } else if (mouseMove == true) {
       slowpokes[i].stopDance();
     }
   }    
@@ -44,13 +47,15 @@ void mouseClicked() {
   mouseClicked = true;
 }
 
-void keyPressed() {
-  keyPress = true;
+/*
+void mouseMoved() {
+  mouseMove = true;
 }
+*/
 
-class Walker {
+class Bacteria {
   int myX, myY, myColor;
-  Walker(int x, int y) {
+  Bacteria(int x, int y) {
     myX = x;
     myY = y;
     myColor = color((int)(Math.random() * 256), (int)(Math.random() * 256), (int)(Math.random() * 256));
@@ -72,9 +77,12 @@ class Walker {
   }
   
   void show() {
-    int randomSize = (int)(Math.random() * 10);
+    // int randomSize = (int)(Math.random() * 10);
+    
+    // filter(BLUR, .01);
+    
     fill(myColor);
-    ellipse(myX, myY, randomSize, randomSize);
+    ellipse(myX, myY, 20, 20);
   }
   
   void dance() {
@@ -86,6 +94,5 @@ class Walker {
     myX = myX - (int)(Math.random() * 20) - 10;
     myY = myY - (int)(Math.random() * 20) - 10;
   }
-  
   
 }
