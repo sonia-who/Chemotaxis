@@ -6,7 +6,7 @@ float x;
 float y;
 float easing = 0.009;
 
-boolean mouseClicked = false;
+boolean click = false;
 boolean mouseMove = false;
 
 void setup() {
@@ -35,7 +35,7 @@ void draw() {
   for (int i = 0; i < 100; i++) {
     slowpokes[i].show();
     slowpokes[i].walk();
-    if (mouseClicked == true) {
+    if (click == true) {
       slowpokes[i].dance();
     } else if (mouseMove == true) {
       slowpokes[i].stopDance();
@@ -44,7 +44,7 @@ void draw() {
 }
 
 void mouseClicked() {
-  mouseClicked = true;
+  click = true;
 }
 
 /*
